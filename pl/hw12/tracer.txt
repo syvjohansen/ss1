@@ -1,0 +1,51 @@
+(vop(let-exp(var-exp z)(const-exp 5)
+(let-exp(var-exp x)(const-exp 3)
+(let-exp(var-exp y)(diff-exp(var-exp x)(const-exp 1))
+(let-exp(var-exp x)(const-exp 4
+(diff-exp(var-exp z)(diff-exp(var-exp x)(var-exp y)))))))))
+
+(vo
+	val1->(vo(const-exp 5)ie)
+			(num-val 5)
+	vo((vop
+	(let-exp(var-exp x)(const-exp 3)
+	(let-exp(var-exp y)(diff-exp(var-exp x)(const-exp 1))
+	(let-exp(var-exp x)(const-exp 4
+	(diff-exp(var-exp z)(diff-exp(var-exp x)(var-exp y))))))))))
+	(extend-env(var-exp z)(num-val 5)ie)
+
+	val12 -> (vo(const-exp 3)ie)
+			(num-val 3)
+	vo((vop
+	(let-exp(var-exp y)(diff-exp(var-exp x)(const-exp 1))
+	(let-exp(var-exp x)(const-exp 4
+	(diff-exp(var-exp z)(diff-exp(var-exp x)(var-exp y)))))))))
+	extend-env(var-exp x)(num-val 3) (extend-env(var-exp z)(num-val 5)ie))
+
+	val13 -> (vo(diff-exp((var-exp x) (const-exp 1) ) ie (num-val 1))ie)
+		      val132 -> (vo (var-exp(x)(apply-env env)))
+		      val133 -> (vo (const-exp 1) env)
+
+		      num132 -> (3)
+		      num133 -> (1)
+		      (num-val (-3 1))
+    vo((vop(let-exp(var-exp z)(const-exp 5)	
+	(let-exp(var-exp x)(const-exp 4)
+	(diff-exp(var-exp z)(diff-exp(var-exp x)(var-exp y)))))))))
+	(extend-env(var-exp y)(diff-exp(var-exp x)(num-val 1)(extend-env(var-exp x)(num-val 3) (extend-env(var-exp z)(num-val 5)ie)))
+
+	val14 -> (vo(const-exp 4)ie)
+			(num-val 4)
+	vo(vop((diff-exp(var-exp z)(diff-exp(var-exp x)(var-exp y)))
+	(extend-env(var-exp x)(num-val 4) (var-exp y)(diff-exp(var-exp x)(num-val 1)(extend-env(var-exp x)(num-val 3) (extend-env(var-exp z)(num-val 5)ie)))
+	
+	val15 -> (diff-exp(var-exp x)(var-exp y)
+		val152-> (vo(var-exp x)ie)
+		val153		(vo(var-exp y) ie)
+	    num152 -> (4)
+	    num153 -> (2)
+	    (num-val(- 4 2))
+
+
+
+
