@@ -1,0 +1,73 @@
+let x = +(i, x) in if zero?(-(x, 14)) the x else let x = 6 in +(x, *(x, v))
+
+In this scenario let's start out with an original:
+x = 1 
+i = 5
+v = 2
+
+(vo(let-exp(var-exp x)(add-exp(var-exp i)(var-exp x))
+	(if-exp(zero?-exp(diff-exp(var-exp x)(const-exp 14))))
+	(var-exp x)
+	(let-exp(var-exp x)(const-exp 6)(add-exp(var-exp x) (mult-exp(var-exp x)(var-exp v))))))
+
+	val1 -> (vo(add-exp(var-exp i)(var-exp x)) ie)
+
+			val111 -> (vo (var-exp i) ie)
+					  (apply ie i)
+					  (num-val ?->5)
+
+			val112 -> (vo (var-exp x) ie)
+					  (apply ie x)
+					  (num-val )
+			num111 -> (exp-val -> num(num-val 5))  ;;;this is after getting the next part I wasn't sure whether to put it here or on the bottom.
+			num112 -> (exp-val -> num(num-val 18)  ;;;same with this
+	(num-val (+ num111 num112)) = (num-val(+ 5 18)) = (num-val 23) ;;;same with this
+
+			
+		
+
+	(vo((if-exp(zero?-exp(diff-exp(var-exp x)(const-exp 14))))
+	(var-exp x)
+	(let-exp(var-exp x)(const-exp 6)(add-exp(var-exp x) (mult-exp(var-exp x)(var-exp v)))))
+	(extend-env (var-exp x) (add-exp(var-exp i)(var-exp x)) ie)
+	
+
+	
+	val12 -> (vo(if-exp(zero?-exp(diff-exp(var-exp x)(const-exp 14)))(var-exp x)(let-exp(var-exp x)(const-exp 6)(add-exp(var-exp x) (mult-exp(var-exp x)(var-exp v))))))
+			  val121 -> (vo(zero?-exp(diff-exp(var-exp x)(const-exp 14))) ie)
+			  	val1211 -> (vo(diff-exp(var-exp x)(const-exp 14)))
+			  		val12111 -> (vo(var-exp x) ie)
+			  					 (apply-env ie x)
+			  					 (num-val 6)
+			  		val12112 -> (vo(const-exp 14) ie)
+			  					(num-val 14)
+			  				num12111 -> (expval -> num(num-val 6))
+			  				num12112 -> (expval -> num(num-val 14))
+			  		(num-val(- num12111 num12112)) = (num-val(-6 14)) = (num-val 8)
+			  	(bool -> (expval -> bool(bool #f)))
+			  val122 -> (vo(let-exp((var-exp x)(const-exp 6)(add-exp(var-exp x)(mult-exp(var-exp x)(var-exp v))))))
+			  		val1221 -> (vo(const-exp 6)ie)
+			  					(num-val 6)
+			  				 (vo((add-exp(var-exp x) (mult-exp(var-exp x)(var-exp v))))  (extend-env x val1221 ie))
+			  		val1222 -> (vo(add-exp(var-exp x)(mult-exp(var-exp x)(var-exp v))))
+			  					val12221 -> (vo(var-exp x)ie)
+			  								(apply-env ie x)
+			  								(num-val 6)
+			  					val12222 -> (vo(mult-exp(var-exp x)(var-exp v)))
+			  							val122221 -> (vo(var-exp x)ie)
+			  										 (apply-env ie x)
+			  										 (num-val 6)
+			  							val122222 -> (vo(var-exp v)ie)
+			  										 (apply-env ie v)
+			  										 (num-val 2)
+			  							num122221 -> (expval->num(num-val 6))
+			  							num122222 -> (expval->num(num-val 2))
+			  					  (num-val(* num122221 num12222)) = (num-val (* 6 2)) = (num-val 12)
+			  					num12221 -> (exp-val-> 6)
+			  					num12222 -> (exp-val->12)
+			  		  (num-val(+ num12221 num12222)) = (num-val (+ 6 12)) = (num-val 18)
+
+
+
+
+

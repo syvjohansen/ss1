@@ -1,0 +1,13 @@
+#lang racket
+(define (insert-right x y lst)
+ (cond
+  ((null? lst) '())
+  ((list? (car lst)) (cons (insert-right x y (car lst)) (insert-right x y (cdr lst))))
+  ((eq? (car lst) y)
+   (append (list y x)
+   (insert-right x y (cdr lst))))
+  (else
+   (cons (car lst) (insert-right x y (cdr lst))))))
+
+(insert-right '(1 2) 3 '(1 2 3 4 5 3 6))
+

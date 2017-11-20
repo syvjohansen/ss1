@@ -1,0 +1,10 @@
+#lang racket
+(define (replace x y list)
+ (cond
+  ((null? list) '())
+  ((list? (car list)) (cons (replace y x (car list)) (replace y x (cdr list))))
+  ((eq? (car list) y) (cons x (replace y x (cdr list))))
+  (else
+   (cons (car list) (replace y x (cdr list))))))
+
+(replace "x" "y" '("x" "y" "z" "a"))

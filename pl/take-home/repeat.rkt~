@@ -1,0 +1,13 @@
+#lang racket
+(define (repeat? lst)
+ (define (help el lst)
+  (or (null? lst)
+      (and (eq? el (car lst))
+           (help (car lst) (cdr lst)))))
+ (or (null? lst)
+     (help (car lst) (cdr lst))))
+
+(repeat? '(1 1 1 1))
+(repeat? '(a a a a))
+(repeat? '(1 2 1))
+(repeat? '(1 (1 1) 1 1))
