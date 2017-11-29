@@ -10,4 +10,8 @@ Junk bonds
 
 	What is unique about financial institutions is the ability to operate on leverage.
 
-	
+	Schleiffer argument:
+		Arbitrage can't always occur for prices to go to their values.
+		Big Short example on having to wait to until what you think will happen to happen.
+		People may be right on what happens.  It is about waiting it out to see the results.
+		You have to spend money to engage in arbitrage.
